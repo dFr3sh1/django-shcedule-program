@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BYou</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}" />
+</head>
+<body>
+    <div class="header_bar">
+        <p>+33 (0) 3 20 87 89 90</p>
+        <ul>
+            <li><a href="#">FR</a></li>
+            <li><a href="#">login</a></li>
+        </ul>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#">ACCUEIL</a></li>            
+            <li><a href="#">RENDEZ-VOUS</a></li>
+            <li><a href="#">MON PROGRÈS</a></li>
+            <li><a href="#">INSCRIVEZ-VOUS</a></li>
+        </ul>
+    </nav>
+    {% block content %}{% endblock %}   
+    <footer>
+    </footer>
+</body>
+</html>
