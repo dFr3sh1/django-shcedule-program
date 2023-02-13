@@ -10,11 +10,13 @@ class User(AbstractUser):
     """
     COACH = 'COACH'
     CUSTOMER = 'CUSTOMER'
+    STAFF = 'STAFF'
     
     
     ROLE_CHOICES = (
         (COACH, 'Coach'),
-        (CUSTOMER, 'Customer')        
+        (CUSTOMER, 'Customer'),
+        (STAFF, 'Staff')        
         )
     
     profile_photo = models.ImageField()

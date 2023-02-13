@@ -15,7 +15,7 @@ body > * {
     justify-content: space-between;
     align-items: center;
     top: 0;
-    background: #111
+    background: #111;
     width: 100%;
     z-index: 1000;
     height: 40px;
@@ -26,8 +26,10 @@ body > * {
     color: aliceblue;
 }
 
-.header_bar ul li {
+.header_bar ul {
     display: flex   ;
+    justify-content: space-between;
+    align-content: center;
     font-family: 'Montserrat', sans-serif;
     color: aliceblue;
     list-style: none;

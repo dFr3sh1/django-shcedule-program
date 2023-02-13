@@ -14,15 +14,15 @@
         <p>+33 (0) 3 20 87 89 90</p>
         <ul>
             <li><a href="#">FR</a></li>
-            <li><a href="authentication/auth.html">login</a></li>
+            <li><a href="{% url 'login' %}">login</a></li>
         </ul>
     </div>
     <nav>
         <ul>
-            <li><a href="authentication/home.html'">ACCUEIL</a></li>            
-            <li><a href="authentication/appointments.html">RENDEZ-VOUS</a></li>
-            <li><a href="authentication/historique.html">MON PROGRÈS</a></li>
-            <li><a href="authentication/auth.html">INSCRIVEZ-VOUS</a></li>
+            <li><a href="{% url 'accueil' %}">ACCUEIL</a></li>            
+            <li><a href="{% url 'rendez-vous' %}">RENDEZ-VOUS</a></li>
+            <li><a href="{% url 'historique' %}">MON PROGRÈS</a></li>
+            <li><a href="{% url 'signup' %}">INSCRIVEZ-VOUS</a></li>
         </ul>
     </nav>
     {% block content %}{% endblock %}   
