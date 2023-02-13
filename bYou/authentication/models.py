@@ -10,11 +10,20 @@ class User(AbstractUser):
     """
     COACH = 'COACH'
     CUSTOMER = 'CUSTOMER'
+<<<<<<< HEAD
+=======
+    STAFF = 'STAFF'
+>>>>>>> feature/auth
     
     
     ROLE_CHOICES = (
         (COACH, 'Coach'),
+<<<<<<< HEAD
         (CUSTOMER, 'Customer')        
+=======
+        (CUSTOMER, 'Customer'),
+        (STAFF, 'Staff')        
+>>>>>>> feature/auth
         )
     
     profile_photo = models.ImageField()
