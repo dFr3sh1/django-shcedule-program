@@ -1,6 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
 
 from . import forms
 
@@ -24,10 +24,15 @@ def login_page(request):
             )
             if user is not None:
                 login(request, user)
+                #return redirect('authentication/home.html')
                 message = f'Bonjour, {user.username}! Vous êtes connecté.'
             else:
                 message = 'Identifiants invalides.'                
-    return render(request, 'authentication/login.html', context={'form':form, 'message':message})    
+    return render(request, 'authentication/login.html', context={'form':form, 'message':message})  
+
+def logout_user(request):
+    logout(request)
+    return redirect('login')  
 
 def appointments(request):
     return render(request, 'authentication/appointments.html')

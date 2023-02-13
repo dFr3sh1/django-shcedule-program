@@ -14,18 +14,21 @@
         <p>+33 (0) 3 20 87 89 90</p>
         <ul>
             <li><a href="#">FR</a></li>
-            <li><a href="#">login</a></li>
+            <li><a href="authentication/auth.html">login</a></li>
         </ul>
     </div>
     <nav>
         <ul>
-            <li><a href="#">ACCUEIL</a></li>            
-            <li><a href="#">RENDEZ-VOUS</a></li>
-            <li><a href="#">MON PROGRÈS</a></li>
-            <li><a href="#">INSCRIVEZ-VOUS</a></li>
+            <li><a href="authentication/home.html'">ACCUEIL</a></li>            
+            <li><a href="authentication/appointments.html">RENDEZ-VOUS</a></li>
+            <li><a href="authentication/historique.html">MON PROGRÈS</a></li>
+            <li><a href="authentication/auth.html">INSCRIVEZ-VOUS</a></li>
         </ul>
     </nav>
     {% block content %}{% endblock %}   
+    {%  if user.is_authenticated %}
+            <p>Vous êtes connecté en tant que {{ request.user }}. <a href="{% url 'logout' %}">Se déconnecter</a></p>
+        {% endif %}
     <footer>
     </footer>
 </body>
