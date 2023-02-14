@@ -2,8 +2,32 @@ from django.conf import settings
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect
 from django.views.generic import View
-
 from . import forms
+from authentication.forms import ContactUsForm
+from django.core.mail import send_mail
+from .models import Appointment
+from django.utils import timezone
+    
+# def appointment_list(request):
+#     #Get all appointments that are not in the past and order by start time 
+#     appointments = Appointment.objects.filter(
+#         start_time_gte=timezone.now()
+#     ).order_by("start_time")
+#     # Groupe the appointmens by day
+#     appointments_by_day = {}
+#     for appointment in appointments:
+#         day = appointment.start_time.date()
+#         if day in appointments_by_day:
+#             appointments_by_day[day].append(appointment)
+#         else:
+#             appointments_by_day[day] = [appointment]
+#     # Render the view with the available slots grouped by day
+#     return render(request, "authentication/appointments.html", {"appointments_by_day": appointments_by_day})
+        
+
+def email_sent(request):
+    message = 'Votre rendez vous a été bien enregistré'
+    return render(request, 'authentication/confirmation.html')
 
 def signup_page(request):
     form = forms.SignUpForm()
@@ -57,7 +81,28 @@ def home(request):
     return render(request, 'authentication/home.html')
 
 def appointments(request):
-    return render(request, 'authentication/appointments.html')
+    if request.method == 'POST':
+        form = ContactUsForm(request.POST)    
+        if form.is_valid():
+            email = form.cleaned_data('email')
+            time = form.cleaned_data('time')
+            message = form.cleaned_data('message')
+            send_mail(
+            subject=f'Message from {form.cleaned_data["name"] or "anonyme"} via bYou Contact Us form',
+            message=form.cleaned_data['message'],
+            from_email=form.cleaned_data['email'],
+            recipient_list=['admin@byou.xyz'],
+        )
+            availabilities = Appointment(
+                email = email,
+                time = time,
+                message = message,
+            )
+            form.save()
+        return redirect('confirmation')
+    else:
+        form = ContactUsForm()
+    return render(request, 'authentication/appointments.html', {'form': form})
 
 def historique(request):
     return render(request, 'authentication/historique.html')
