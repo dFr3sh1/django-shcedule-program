@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate, logout
-
-from . import forms
-
-
-def home(request):
-    return render(request, 'authentication/home.html')
-
-def authentication(request):
-    return render(request, 'authentication/auth.html')
-
-def login_page(request):
-    #To call our form and post it with  the request method
-    form = forms.LoginForm()
-    message = ''
-    if request.method == 'POST':
-        form = forms.LoginForm(request.POST)
-=======
 from django.conf import settings
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect
@@ -61,7 +40,6 @@ class LoginPage(View):
     def post(self, request):
         form = self.form_class(request.POST)
         message = ''
->>>>>>> feature/auth
         if form.is_valid():
             user = authenticate(
                 username=form.cleaned_data['username'],
@@ -69,17 +47,6 @@ class LoginPage(View):
             )
             if user is not None:
                 login(request, user)
-<<<<<<< HEAD
-                #return redirect('authentication/home.html')
-                message = f'Bonjour, {user.username}! Vous êtes connecté.'
-            else:
-                message = 'Identifiants invalides.'                
-    return render(request, 'authentication/login.html', context={'form':form, 'message':message})  
-
-def logout_user(request):
-    logout(request)
-    return redirect('login')  
-=======
                 return redirect('accueil')
                 message = f'Bonjour, {user.username}! Vous êtes connecté.'
             else:
@@ -88,7 +55,6 @@ def logout_user(request):
 
 def home(request):
     return render(request, 'authentication/home.html')
->>>>>>> feature/auth
 
 def appointments(request):
     return render(request, 'authentication/appointments.html')
