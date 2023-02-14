@@ -29,4 +29,5 @@ urlpatterns = [
     path('rendez-vous/', views.appointments, name='rendez-vous'),
     path('historique/', views.historique,  name='historique'),
     path('signup/', authentication.views.signup_page, name='signup'),
+    path('confirmation/', authentication.views.email_sent, name='confirmation'),
 ]
