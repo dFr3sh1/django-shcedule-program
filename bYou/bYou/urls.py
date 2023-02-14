@@ -20,9 +20,6 @@ from django.contrib.auth.views import LoginView, LogoutView
 import authentication.views
 
 urlpatterns = [
-<<<<<<< HEAD
-    path('admin/', admin.site.urls)
-=======
     path('admin/', admin.site.urls),
     path('accueil/', views.home, name='accueil'),
     path('', LoginView.as_view(
@@ -32,5 +29,5 @@ urlpatterns = [
     path('rendez-vous/', views.appointments, name='rendez-vous'),
     path('historique/', views.historique,  name='historique'),
     path('signup/', authentication.views.signup_page, name='signup'),
->>>>>>> feature/auth
+    path('confirmation/', authentication.views.email_sent, name='confirmation'),
 ]
